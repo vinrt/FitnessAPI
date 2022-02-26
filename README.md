@@ -31,7 +31,18 @@ To start using this project use the following commands:
 
     Step 5: kubectl get all -n fitness-api
 
-    Step 6: vim /etc/hosts //( use sudo command in case)
+    Step 6: You may need sudo permissions:
+            
+            vim /etc/hosts 
+            #Add this for ingress host -> fitness-api-ingress
+            127.0.0.1 vinrt.fitness.com
+            
+            -OR-
+            
+            cat <<  EOF  >> /etc/hosts
+            #Add this for ingress host -> fitness-api-ingress
+            127.0.0.1 vinrt.fitness.com
+            EOF
 
     Step 7: Add -> 127.0.0.1 vinrt.fitness.com and save file, verify using cat /etc/hosts
 
