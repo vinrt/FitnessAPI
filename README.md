@@ -1,5 +1,5 @@
 # FitnessAPI
-This is PoC application using docker with K8s deployment
+This is a basic PoC application using docker with K8s deployment.
 ## Author
 [Vinay Tiwari ](https://github.com/vinrt)
 
