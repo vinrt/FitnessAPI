@@ -46,7 +46,7 @@ To start using this project use the following commands:
 
     Step 7: Add -> 127.0.0.1 vinrt.fitness.com and save file, verify using cat /etc/hosts
 
-    Step 8: In terminal type this command : 'minikube tunnel'
+    Step 8: Open a new terminal and type this command : 'minikube tunnel'
 
     Step 9: Verify api url : http://vinrt.fitness.com/swagger-ui.html
 
