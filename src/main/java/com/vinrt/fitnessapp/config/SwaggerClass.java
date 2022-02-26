@@ -33,7 +33,7 @@ public class SwaggerClass {
                 "Fitness App PoC ",
                 "2.1.1",
                 "Terms of Service",
-                "Vinay Tiwari- vinns.raghav@gmail.com : https://github.com/vinrt",
+                "Vinay Tiwari : https://github.com/vinrt",
                 "ApacheApache 2.0",
                 "http://www.apache.org/licenses/LICENSE-2.0");
 
