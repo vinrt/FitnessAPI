@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fitness-api-k8s
+  namespace: fitness-api
+  labels:
+    app: fitness-api
+spec:
+  selector:
+    matchLabels:
+      app: fitness-api
+  template:
+    metadata:
+      labels:
+        app: fitness-api
+    spec:
+      containers:
+        - name: fitness-api-image
+          image: fitness-api-image
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          command: ['java', '-jar', '/opt/fitness-api/fitness-api.jar']
+#          volumeMounts:
+#          - mountPath: /opt/fitness-api
+#            name: fitness-api-vol
+#      volumes:
+#        - name: fitness-api-vol
+#          persistentVolumeClaim:
+#            claimName: fitness-pv-claim
+
