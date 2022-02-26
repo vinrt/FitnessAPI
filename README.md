@@ -5,8 +5,8 @@ This is PoC application using docker with K8s deployment
 
 ### Installation:
     Java
-    Minikube
-    Docker
+    Minikube (https://minikube.sigs.k8s.io/docs/start/)
+    Docker (https://docs.docker.com/engine/install/ubuntu/)
 
 
 ### Tech stack:
@@ -15,7 +15,7 @@ This is PoC application using docker with K8s deployment
     Java 11
     Swagger
     Docker
-    K8s
+    Kubernetes
 
 
 ### Project setup instructions
