@@ -21,11 +21,11 @@ spec:
           ports:
             - containerPort: 8080
           command: ['java', '-jar', '/opt/fitness-api/fitness-api.jar']
-#          volumeMounts:
-#          - mountPath: /opt/fitness-api
-#            name: fitness-api-vol
-#      volumes:
-#        - name: fitness-api-vol
-#          persistentVolumeClaim:
-#            claimName: fitness-pv-claim
+          volumeMounts:
+          - mountPath: /opt/fitness-api
+            name: fitness-api-vol
+      volumes:
+        - name: fitness-api-vol
+          persistentVolumeClaim:
+            claimName: fitness-pv-claim
 
