@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/vinrt/FitnessAPI.git
     targetRevision: HEAD
-    path: .k8s/test-env
+    path: FitnessAPI
   destination:
     server: https://kubernetes.default.svc
     namespace: test-argocd-ns
