@@ -2,10 +2,13 @@ package com.vinrt.fitnessapp.controller;
 
 import com.vinrt.fitnessapp.service.CustomerService;
 import com.vinrt.fitnessapp.model.Customer;
+import com.vinrt.fitnessapp.validator.CustomerRegistrationValidator;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
@@ -18,6 +21,10 @@ public class APIController {
     @Autowired
     private CustomerService customergymrecord;
 
+    private  CustomerRegistrationValidator.ValidationResult isOk;
+
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
     @ApiOperation(value = " Get All Customers")
     @RequestMapping(method = RequestMethod.GET, value = "/all")
     public Set<Customer> findAllCustomers() {
@@ -28,11 +35,24 @@ public class APIController {
     @RequestMapping(method = RequestMethod.POST, value = "/add")
     public void addCustomerRecord(@RequestParam String firstName,
                                   @RequestParam String lastName,
-                                  @RequestParam String emailId) {
+                                  @RequestParam String emailId,
+                                  @RequestParam String phoneNumber,
+                                  @RequestParam String dob) {
         Customer customer = new Customer();
         customer.setFirstName(firstName);
         customer.setLastName(lastName);
-        customer.setEmailId(emailId);
+        customer.setEmailId(emailId.toLowerCase());
+        customer.setPhoneNumber(phoneNumber);
+        customer.setDob(LocalDate.parse(dob,formatter));
+        // Validate the data is correct or not
+        isOk = CustomerRegistrationValidator.isNameValid()
+                .and(CustomerRegistrationValidator.isEmailIdValid())
+                .and(CustomerRegistrationValidator.isPhoneNumberValid())
+                .and(CustomerRegistrationValidator.isAnAdult())
+                .apply(customer);
+        if(isOk != CustomerRegistrationValidator.ValidationResult.Success) {
+            throw new IllegalStateException("Please, verify your input : " + isOk.name());
+        }
         customergymrecord.addCustomerRecord(customer);
     }
 
@@ -47,7 +67,9 @@ public class APIController {
     public void updateCustomerRecord(@PathVariable Integer Id,
                                      @RequestParam String firstName,
                                      @RequestParam String lastName,
-                                     @RequestParam String emailId)
+                                     @RequestParam String emailId,
+                                     @RequestParam String phoneNumber,
+                                     @RequestParam LocalDate dob)
     {
         Customer customer = customergymrecord.findbyId(Id);
                 if(firstName!=null)
@@ -56,6 +78,10 @@ public class APIController {
                     customer.setLastName(lastName);
                 if(emailId!=null)
                     customer.setEmailId(emailId);
+                if(phoneNumber!=null)
+                    customer.setPhoneNumber(phoneNumber);
+                if(dob!=null)
+                    customer.setDob(dob);
                 customergymrecord.updateCustomerRecord(customer);
 
     }

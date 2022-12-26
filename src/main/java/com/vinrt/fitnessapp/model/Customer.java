@@ -2,6 +2,9 @@ package com.vinrt.fitnessapp.model;
 
 import io.swagger.annotations.ApiModelProperty;
 
+import java.time.LocalDate;
+import java.util.Objects;
+
 /**
  * Created by vinayraghavtiwari on 30/11/18.
  */
@@ -15,9 +18,28 @@ public class Customer {
     private String firstName;
     @ApiModelProperty(notes = "Customer LastName")
     private String lastName;
-    @ApiModelProperty(notes = "Customer Emailid")
+    @ApiModelProperty(notes = "Customer Emailid, should be in lowercase")
     private String emailId;
+    @ApiModelProperty(notes = "Customer phoneNumber")
+    private String phoneNumber;
+    @ApiModelProperty(notes = "Customer DateOfBirth, should be in format dd/MM/yyyy")
+    private LocalDate dob;
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public LocalDate getDob() {
+        return dob;
+    }
+
+    public void setDob(LocalDate dob) {
+        this.dob = dob;
+    }
 
     public Integer getId() {
         return Id;
@@ -56,22 +78,13 @@ public class Customer {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Customer customer = (Customer) o;
-
-        if (Id != customer.Id) return false;
-        if (!firstName.equals(customer.firstName)) return false;
-        if (!lastName.equals(customer.lastName)) return false;
-        return emailId.equals(customer.emailId);
+        return Objects.equals(Id, customer.Id) && Objects.equals(firstName, customer.firstName) && Objects.equals(lastName, customer.lastName) && Objects.equals(emailId, customer.emailId) && Objects.equals(phoneNumber, customer.phoneNumber) && Objects.equals(dob, customer.dob);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (Id ^ (Id >>> 32));
-        result = 31 * result + firstName.hashCode();
-        result = 31 * result + lastName.hashCode();
-        result = 31 * result + emailId.hashCode();
-        return result;
+        return Objects.hash(Id, firstName, lastName, emailId, phoneNumber, dob);
     }
 
     @Override
@@ -81,6 +94,8 @@ public class Customer {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", emailId='" + emailId + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", dob=" + dob +
                 '}';
     }
 }
