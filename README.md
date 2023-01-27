@@ -11,8 +11,8 @@ This is a basic PoC application using docker with K8s deployment.
 
 ### Tech stack:
     IntelliJ
-    SpringBoot 2.2.11
-    Java 11
+    SpringBoot 3.0.2
+    Java 17
     Swagger
     Docker
     Kubernetes
