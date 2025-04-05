@@ -10,7 +10,7 @@ import java.util.function.Function;
 public interface CustomerRegistrationValidator extends Function<Customer, CustomerRegistrationValidator.ValidationResult> {
 
     static CustomerRegistrationValidator isNameValid(){
-        return customer -> customer.getFirstName().length()  != 0 && customer.getLastName().length() != 0
+        return customer -> !customer.getFirstName().isEmpty() && !customer.getLastName().isEmpty()
                 ? ValidationResult.Success : ValidationResult.Name_cannot_be_null;
     }
 

@@ -1,7 +1,4 @@
 package com.vinrt.fitnessapp.config;
-
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
@@ -29,14 +26,13 @@ public class SwaggerClass {
     }
     private ApiInfo metaInfo()
     {
-        ApiInfo apiinfo = new ApiInfo(
+        return new ApiInfo(
                 "Anytime Fitness Stockholm",
                 "Fitness application only in Stockholm",
                 "2.1.2",
                 null,
-                 new Contact("Vinay", "https://github.com/vinrt", "na"),
+                 "https://github.com/vinrt",
                 null,
                 null);
-        return apiinfo;
     }
 }
