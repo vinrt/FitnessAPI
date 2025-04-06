@@ -20,8 +20,9 @@ public interface CustomerRegistrationValidator extends Function<Customer, Custom
     }
 
     static CustomerRegistrationValidator isPhoneNumberValid (){
+        String pattern = "^(\\+\\d{1,2}\\s?)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$";
         return customer ->
-                customer.getPhoneNumber().contains("+46") && customer.getPhoneNumber().length() < 12
+                customer.getPhoneNumber().matches(pattern) && customer.getPhoneNumber().length() <= 15
                         ? ValidationResult.Success : ValidationResult.Phone_number_is_not_valid;
     }
 
