@@ -24,6 +24,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>24</java.version>
+		<mongodb.version>3.12.14</mongodb.version>
 	</properties>
 
 	<dependencies>
@@ -68,6 +69,13 @@
 			<groupId>org.springdoc</groupId>
 				<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
 			<version>2.8.5</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongodb-driver-sync</artifactId>
+			<version>${mongodb.version}</version> <!-- or latest -->
 		</dependency>
 
 	</dependencies>
