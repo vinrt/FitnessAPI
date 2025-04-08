@@ -19,7 +19,7 @@ import java.util.*;
 public class APIController {
 
     @Autowired
-    private CustomerService customergymrecord;
+    private CustomerService memberService;
 
     private  CustomerRegistrationValidator.ValidationResult isOk;
 
@@ -28,7 +28,7 @@ public class APIController {
     @ApiOperation(value = " Get All Customers")
     @RequestMapping(method = RequestMethod.GET, value = "/all")
     public Set<Customer> findAllCustomers() {
-        return customergymrecord.findAllVustomers();
+        return memberService.findAllVustomers();
     }
 
     @ApiOperation(value = " Add Customers")
@@ -53,13 +53,13 @@ public class APIController {
         if(isOk != CustomerRegistrationValidator.ValidationResult.Success) {
             throw new IllegalStateException("Please, verify your input : " + isOk.name());
         }
-        customergymrecord.addCustomerRecord(customer);
+        memberService.addCustomerRecord(customer);
     }
 
     @ApiOperation(value = " Find Customer Id")
     @RequestMapping(method = RequestMethod.GET , value = "/{Id}")
     Customer findById(@PathVariable Integer Id){
-        return customergymrecord.findbyId(Id);
+        return memberService.findbyId(Id);
     }
 
     @ApiOperation(value = " Update Customer Record")
@@ -71,7 +71,7 @@ public class APIController {
                                      @RequestParam String phoneNumber,
                                      @RequestParam LocalDate dob)
     {
-        Customer customer = customergymrecord.findbyId(Id);
+        Customer customer = memberService.findbyId(Id);
                 if(firstName!=null)
                     customer.setFirstName(firstName);
                 if(lastName!=null)
@@ -82,13 +82,13 @@ public class APIController {
                     customer.setPhoneNumber(phoneNumber);
                 if(dob!=null)
                     customer.setDob(dob);
-                customergymrecord.updateCustomerRecord(customer);
+                memberService.updateCustomerRecord(customer);
 
     }
     @ApiOperation(value = " Delete Customer Record")
     @RequestMapping(method = RequestMethod.DELETE , value = "/delete/{Id}")
     public boolean deleteCustomer(@PathVariable Integer Id){
-       customergymrecord.deleteRecord(Id);
+       memberService.deleteRecord(Id);
        return true;
     }
 }

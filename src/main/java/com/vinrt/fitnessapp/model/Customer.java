@@ -79,12 +79,12 @@ public class Customer {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Customer customer = (Customer) o;
-        return Objects.equals(Id, customer.Id) && Objects.equals(firstName, customer.firstName) && Objects.equals(lastName, customer.lastName) && Objects.equals(emailId, customer.emailId) && Objects.equals(phoneNumber, customer.phoneNumber) && Objects.equals(dob, customer.dob);
+        return Objects.equals(firstName, customer.firstName) && Objects.equals(lastName, customer.lastName) && Objects.equals(emailId, customer.emailId) && Objects.equals(phoneNumber, customer.phoneNumber) && Objects.equals(dob, customer.dob);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(Id, firstName, lastName, emailId, phoneNumber, dob);
+        return Objects.hash(emailId, phoneNumber);
     }
 
     @Override

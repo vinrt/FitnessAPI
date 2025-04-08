@@ -1,5 +1,6 @@
 package com.vinrt.fitnessapp.service;
 
+import com.vinrt.fitnessapp.exceptionhandler.ResourceFoundException;
 import com.vinrt.fitnessapp.model.Customer;
 import org.springframework.stereotype.Service;
 
@@ -12,21 +13,24 @@ import java.util.*;
 @Service
 public class CustomerServiceImplementation implements CustomerService {
 
-    Set<Customer> gymRecord = new HashSet<>();
+    Set<Customer> members = new HashSet<>();
 
 
     @Override
-    public void addCustomerRecord(Customer customer) {
-
-        customer.setId(gymRecord.size()+1);
-        gymRecord.add(customer);
-        System.out.println("Gym Record" + gymRecord);
+    public void addCustomerRecord(Customer newCustomer) {
+        if(members.contains(newCustomer)) {
+            throw new ResourceFoundException("Customer with " + newCustomer.getFirstName() + " already exists");
+        }
+        else {
+            members.add(newCustomer);
+            newCustomer.setId(members.size() + 1);
+        }
     }
 
     @Override
     public boolean updateCustomerRecord(Customer customer) {
 
-        for(Customer cust : gymRecord){
+        for(Customer cust : members){
             if(cust.getId().equals(customer.getId()))
             {
                 cust.setFirstName(customer.getFirstName());
@@ -41,9 +45,9 @@ public class CustomerServiceImplementation implements CustomerService {
 
     @Override
     public boolean deleteRecord(Integer Id) {
-        for(Customer cust : gymRecord){
+        for(Customer cust : members){
             if(cust.getId().equals(Id))
-                gymRecord.remove(cust);
+                members.remove(cust);
                 return true;
         }
         return false;
@@ -51,7 +55,7 @@ public class CustomerServiceImplementation implements CustomerService {
 
     @Override
     public Customer findbyId(Integer Id) {
-        for(Customer cus: gymRecord){
+        for(Customer cus: members){
             if(cus.getId().equals(Id)){
                 return cus;
             }
@@ -61,6 +65,6 @@ public class CustomerServiceImplementation implements CustomerService {
 
     @Override
     public Set<Customer> findAllVustomers() {
-        return gymRecord;
+        return members;
     }
 }
