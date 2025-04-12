@@ -2,23 +2,21 @@ package com.vinrt.fitnessapp.model;
 
 import io.swagger.annotations.ApiModelProperty;
 
-import java.lang.annotation.Documented;
 import java.time.LocalDate;
 import java.util.Objects;
 
 /**
- * Created by vinayraghavtiwari on 30/11/18.
+ * Created by Vinay Tiwari on 12/04/2025
  */
 
 
-public class Customer {
-    public Customer(Integer id,
-                    String firstName,
-                    String lastName,
-                    String emailId,
-                    String phoneNumber,
-                    LocalDate dob) {
-        Id = id;
+public class User {
+    public User(
+                String firstName,
+                String lastName,
+                String emailId,
+                String phoneNumber,
+                LocalDate dob) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailId = emailId;
@@ -26,8 +24,6 @@ public class Customer {
         this.dob = dob;
     }
 
-    @ApiModelProperty(notes = "Customer Id")
-    private Integer Id;
     @ApiModelProperty(notes = "Customer FirstName")
     private String firstName;
     @ApiModelProperty(notes = "Customer LastName")
@@ -55,10 +51,6 @@ public class Customer {
         this.dob = dob;
     }
 
-    public Integer getId() {
-        return Id;
-    }
-
     public String getFirstName() {
         return firstName;
     }
@@ -69,10 +61,6 @@ public class Customer {
 
     public String getEmailId() {
         return emailId;
-    }
-
-    public void setId(Integer id) {
-        Id = id;
     }
 
     public void setFirstName(String firstName) {
@@ -92,7 +80,7 @@ public class Customer {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Customer customer = (Customer) o;
+        User customer = (User) o;
         return Objects.equals(firstName, customer.firstName) && Objects.equals(lastName, customer.lastName) && Objects.equals(emailId, customer.emailId) && Objects.equals(phoneNumber, customer.phoneNumber) && Objects.equals(dob, customer.dob);
     }
 
@@ -104,7 +92,6 @@ public class Customer {
     @Override
     public String toString() {
         return "Customer{" +
-                "Id=" + Id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", emailId='" + emailId + '\'' +

@@ -1,13 +1,14 @@
 package com.vinrt.fitnessapp.validator;
 
 import com.vinrt.fitnessapp.model.Customer;
+import com.vinrt.fitnessapp.model.User;
 
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.function.Function;
 
 
-public interface CustomerRegistrationValidator extends Function<Customer, CustomerRegistrationValidator.ValidationResult> {
+public interface CustomerRegistrationValidator extends Function<User, CustomerRegistrationValidator.ValidationResult> {
 
     static CustomerRegistrationValidator isNameValid(){
         return customer -> !customer.getFirstName().isEmpty() && !customer.getLastName().isEmpty()
